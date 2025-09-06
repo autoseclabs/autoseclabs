@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxyT-lcHN2FjJBjUUqMXZs08lmcq-C6t02Jmf9jelz8u7X2pUeihrNVfyrPUrMWsoTA/exec"; // <- replace if different
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -18,17 +20,26 @@ const Contact = () => {
       timestamp: new Date().toISOString(),
     };
 
+    // Convert to application/x-www-form-urlencoded to avoid preflight CORS issues
+    const params = new URLSearchParams();
+    Object.entries(submissionData).forEach(([key, value]) => {
+      params.append(key, String(value ?? ''));
+    });
+
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbw15eYk3Oa5qR2Zivzuw2fdBI20u9SkFwiLVeL7MkMYWSw-y_70DUZrp273LXsuTNow/exec", {
-        method: "POST",
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
-        body: JSON.stringify(submissionData),
+        body: params.toString()
       });
 
+      // Apps Script returns JSON, so parse it
+      const json = await response.json().catch(() => null);
+
       if (response.ok) {
-        alert("✅ Thank you for your message! It has been saved.");
+        alert('✅ Thank you for your message! It has been saved.');
         setFormData({
           name: '',
           email: '',
@@ -36,12 +47,14 @@ const Contact = () => {
           service: '',
           message: ''
         });
+        console.log('Submission response:', json);
       } else {
-        alert("❌ Failed to submit. Please try again later.");
+        console.error('Submission failed', response.status, json);
+        alert('❌ Failed to submit. Please try again later.');
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("⚠️ Network error. Please try again.");
+      console.error('Network / CORS error:', error);
+      alert('⚠️ Network error. Please check console for details.');
     }
   };
 
@@ -60,42 +73,42 @@ const Contact = () => {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Full Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
+              <input
+                type="text"
+                id="name"
+                name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
+              <input
+                type="email"
+                id="email"
+                name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
               <label htmlFor="company">Company</label>
-              <input 
-                type="text" 
-                id="company" 
-                name="company" 
+              <input
+                type="text"
+                id="company"
+                name="company"
                 value={formData.company}
                 onChange={handleChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
               <label htmlFor="service">Service Interested In</label>
-              <select 
-                id="service" 
-                name="service" 
+              <select
+                id="service"
+                name="service"
                 value={formData.service}
                 onChange={handleChange}
                 required
@@ -111,10 +124,10 @@ const Contact = () => {
             </div>
             <div className="form-group">
               <label htmlFor="message">Message</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                rows={4} 
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
                 placeholder="Tell us about your project..."
                 value={formData.message}
                 onChange={handleChange}
