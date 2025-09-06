@@ -19,7 +19,7 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwV5a0HHxGvwFKXS3CGeCaRFN-6MII81jb9rtyoboztSqizYu0rShglD3zM77dK231d/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbw15eYk3Oa5qR2Zivzuw2fdBI20u9SkFwiLVeL7MkMYWSw-y_70DUZrp273LXsuTNow/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
