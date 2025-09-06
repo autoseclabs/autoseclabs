@@ -103,7 +103,7 @@ const Contact = () => {
         </div>
 
         <div className="quick-connect fade-in">
-          <a href="mailto:sales@autoseclabs.com" className="connect-button">
+          <a href="mailto:hello@autoseclabs.com" className="connect-button">
             ✉️ hello@autoseclabs.com
           </a>
           <a href="https://wa.me/1234567890" className="connect-button">
