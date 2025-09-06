@@ -11,10 +11,6 @@ import Team from './components/Team'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import './styles.css'
-import Landing from "./Landing";
-
-
-
 
 function App() {
   const [scrollY, setScrollY] = useState(0)
@@ -89,10 +85,6 @@ function App() {
       <Footer />
     </div>
   )
-  function App() {
-  return <Landing />;
-}
-
 }
 
 export default App
