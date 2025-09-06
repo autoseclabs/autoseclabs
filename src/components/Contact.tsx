@@ -10,40 +10,40 @@ const Contact = () => {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const submissionData = {
-    ...formData,
-    timestamp: new Date().toISOString() // add timestamp before sending
-  };
+    // include timestamp before sending
+    const submissionData = {
+      ...formData,
+      timestamp: new Date().toISOString(),
+    };
 
-  try {
-    const response = await fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(submissionData),
-    });
-
-    if (response.ok) {
-      alert("✅ Thank you for your message! It has been saved.");
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        service: '',
-        message: ''
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwV5a0HHxGvwFKXS3CGeCaRFN-6MII81jb9rtyoboztSqizYu0rShglD3zM77dK231d/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submissionData),
       });
-    } else {
-      alert("❌ Failed to submit. Please try again later.");
-    }
-  } catch (error) {
-    console.error("Error submitting form:", error);
-    alert("⚠️ Network error. Please try again.");
-  }
-};
 
+      if (response.ok) {
+        alert("✅ Thank you for your message! It has been saved.");
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        alert("❌ Failed to submit. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("⚠️ Network error. Please try again.");
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
