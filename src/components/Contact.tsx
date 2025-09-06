@@ -13,7 +13,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbzaslvKMuVQcVxHt7v-ynIlZNO9Goef18MThXCoCJqueOjKA4MBHPHLzAfrRVS6l9vS/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
