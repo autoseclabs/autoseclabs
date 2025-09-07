@@ -1,67 +1,71 @@
-import { useState } from 'react';
+import { useState } from "react";
+import "./Contact.css"; // ✅ Import the CSS file for popup styles
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxyT-lcHN2FjJBjUUqMXZs08lmcq-C6t02Jmf9jelz8u7X2pUeihrNVfyrPUrMWsoTA/exec"; // <- replace if different
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxyT-lcHN2FjJBjUUqMXZs08lmcq-C6t02Jmf9jelz8u7X2pUeihrNVfyrPUrMWsoTA/exec";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    service: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    service: "",
+    message: "",
   });
+
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // include timestamp before sending
     const submissionData = {
       ...formData,
       timestamp: new Date().toISOString(),
     };
 
-    // Convert to application/x-www-form-urlencoded to avoid preflight CORS issues
     const params = new URLSearchParams();
     Object.entries(submissionData).forEach(([key, value]) => {
-      params.append(key, String(value ?? ''));
+      params.append(key, String(value ?? ""));
     });
 
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+          "Content-Type":
+            "application/x-www-form-urlencoded;charset=UTF-8",
         },
-        body: params.toString()
+        body: params.toString(),
       });
 
-      // Apps Script returns JSON, so parse it
-      const json = await response.json().catch(() => null);
+      await response.json().catch(() => null);
 
       if (response.ok) {
-        alert('✅ Thank you for your message! It has been saved.');
+        setShowPopup(true);
         setFormData({
-          name: '',
-          email: '',
-          company: '',
-          service: '',
-          message: ''
+          name: "",
+          email: "",
+          company: "",
+          service: "",
+          message: "",
         });
-        console.log('Submission response:', json);
       } else {
-        console.error('Submission failed', response.status, json);
-        alert('❌ Failed to submit. Please try again later.');
+        alert("❌ Failed to submit. Please try again later.");
       }
     } catch (error) {
-      console.error('Network / CORS error:', error);
-      alert('⚠️ Network error. Please check console for details.');
+      console.error("Network / CORS error:", error);
+      alert("⚠️ Network error. Please check console for details.");
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -112,6 +116,7 @@ const Contact = () => {
                 value={formData.service}
                 onChange={handleChange}
                 required
+                className="bg-white text-black border border-gray-300 rounded-md p-2 w-full"
               >
                 <option value="">Select a service</option>
                 <option value="qa-testing">QA/Manual Testing</option>
@@ -133,21 +138,53 @@ const Contact = () => {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className="cta-button" style={{ width: '100%' }}>
+            <button
+              type="submit"
+              className="cta-button"
+              style={{ width: "100%" }}
+            >
               Send Message
             </button>
           </form>
         </div>
 
         <div className="quick-connect fade-in">
-          <a href="mailto:contact@autoseclabs.com" className="connect-button">
+          <a
+            href="mailto:contact@autoseclabs.com"
+            className="connect-button"
+          >
             ✉️ contact@autoseclabs.com
           </a>
-          <a href="https://wa.me/+918712388153" className="connect-button">
+          <a
+            href="https://wa.me/+918712388153"
+            className="connect-button"
+          >
             💬 WhatsApp Chat
           </a>
         </div>
       </div>
+
+      {/* ✅ Success Popup */}
+      {showPopup && (
+        <div className="success-popup">
+          <div className="popup-content">
+            <button
+              className="close-btn"
+              onClick={() => setShowPopup(false)}
+            >
+              ✖
+            </button>
+            <h3>✅ Thank you for your message!</h3>
+            <p>We have received your details successfully.</p>
+            <button
+              className="cta-button mt-4"
+              onClick={() => setShowPopup(false)}
+            >
+              Fill Another Form
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
