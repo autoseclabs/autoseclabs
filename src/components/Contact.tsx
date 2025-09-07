@@ -112,6 +112,9 @@ const Contact = () => {
                 value={formData.service}
                 onChange={handleChange}
                 required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 
+               bg-white text-gray-800 
+               focus:ring-2 focus:ring-blue-500 focus:outline-none"
               >
                 <option value="">Select a service</option>
                 <option value="qa-testing">QA/Manual Testing</option>
