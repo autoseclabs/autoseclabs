@@ -1,8 +1,7 @@
 import { useState } from "react";
-import "./Contact.css"; // ✅ Import the CSS file for popup styles
 
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxyT-lcHN2FjJBjUUqMXZs08lmcq-C6t02Jmf9jelz8u7X2pUeihrNVfyrPUrMWsoTA/exec";
+  "https://script.google.com/macros/s/AKfycbxyT-lcHN2FjJBjUUqMXZs08lmcq-C6t02Jmf9jelz8u7X2pUeihrNVfyrPUrMWsoTA/exec"; // <- replace if different
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +11,6 @@ const Contact = () => {
     service: "",
     message: "",
   });
-
-  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,16 +29,15 @@ const Contact = () => {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         headers: {
-          "Content-Type":
-            "application/x-www-form-urlencoded;charset=UTF-8",
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
         },
         body: params.toString(),
       });
 
-      await response.json().catch(() => null);
+      const json = await response.json().catch(() => null);
 
       if (response.ok) {
-        setShowPopup(true);
+        alert("✅ Thank you for your message! It has been saved.");
         setFormData({
           name: "",
           email: "",
@@ -49,7 +45,9 @@ const Contact = () => {
           service: "",
           message: "",
         });
+        console.log("Submission response:", json);
       } else {
+        console.error("Submission failed", response.status, json);
         alert("❌ Failed to submit. Please try again later.");
       }
     } catch (error) {
@@ -70,13 +68,18 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section">
-      <div className="container">
-        <h2 className="section-title fade-in">Get In Touch</h2>
-        <div className="contact-form fade-in">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Full Name</label>
+    <section id="contact" className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <h2 className="text-3xl font-bold text-center mb-12 fade-in">
+          Get In Touch
+        </h2>
+
+        <div className="bg-white shadow-lg rounded-2xl p-8 fade-in">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block font-medium mb-2">
+                Full Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -84,10 +87,14 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
+
+            <div>
+              <label htmlFor="email" className="block font-medium mb-2">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -95,10 +102,14 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="company">Company</label>
+
+            <div>
+              <label htmlFor="company" className="block font-medium mb-2">
+                Company
+              </label>
               <input
                 type="text"
                 id="company"
@@ -106,17 +117,21 @@ const Contact = () => {
                 value={formData.company}
                 onChange={handleChange}
                 required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="service">Service Interested In</label>
+
+            <div>
+              <label htmlFor="service" className="block font-medium mb-2">
+                Service Interested In
+              </label>
               <select
                 id="service"
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
                 required
-                className="bg-white text-black border border-gray-300 rounded-md p-2 w-full"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               >
                 <option value="">Select a service</option>
                 <option value="qa-testing">QA/Manual Testing</option>
@@ -127,8 +142,11 @@ const Contact = () => {
                 <option value="development">Development</option>
               </select>
             </div>
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
+
+            <div>
+              <label htmlFor="message" className="block font-medium mb-2">
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -136,55 +154,34 @@ const Contact = () => {
                 placeholder="Tell us about your project..."
                 value={formData.message}
                 onChange={handleChange}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
+
             <button
               type="submit"
-              className="cta-button"
-              style={{ width: "100%" }}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors"
             >
               Send Message
             </button>
           </form>
         </div>
 
-        <div className="quick-connect fade-in">
+        <div className="mt-10 text-center space-y-4 fade-in">
           <a
             href="mailto:contact@autoseclabs.com"
-            className="connect-button"
+            className="block text-blue-600 font-medium hover:underline"
           >
             ✉️ contact@autoseclabs.com
           </a>
           <a
             href="https://wa.me/+918712388153"
-            className="connect-button"
+            className="block text-green-600 font-medium hover:underline"
           >
             💬 WhatsApp Chat
           </a>
         </div>
       </div>
-
-      {/* ✅ Success Popup */}
-      {showPopup && (
-        <div className="success-popup">
-          <div className="popup-content">
-            <button
-              className="close-btn"
-              onClick={() => setShowPopup(false)}
-            >
-              ✖
-            </button>
-            <h3>✅ Thank you for your message!</h3>
-            <p>We have received your details successfully.</p>
-            <button
-              className="cta-button mt-4"
-              onClick={() => setShowPopup(false)}
-            >
-              Fill Another Form
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
