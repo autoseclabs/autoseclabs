@@ -140,8 +140,8 @@ const Contact = () => {
         </div>
 
         <div className="quick-connect fade-in">
-          <a href="mailto:sales@autoseclabs.com" className="connect-button">
-            ✉️ sales@autoseclabs.com
+          <a href="mailto:contact@autoseclabs.com" className="connect-button">
+            ✉️ contact@autoseclabs.com
           </a>
           <a href="https://wa.me/+918712388153" className="connect-button">
             💬 WhatsApp Chat
