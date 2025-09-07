@@ -561,3 +561,33 @@ footer {
         transform: translateY(20px) rotate(-5deg);
     }
 }
+
+/* Dropdown styling */
+.form-group select {
+    background: rgba(20, 20, 40, 0.8); /* dark translucent background */
+    border: 1px solid rgba(102, 126, 234, 0.5); /* blue accent border */
+    color: #ffffff; /* white text */
+    border-radius: 10px;
+    padding: 1rem;
+    appearance: none; /* clean style */
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #764ba2;
+    box-shadow: 0 0 20px rgba(118, 75, 162, 0.4);
+}
+
+/* Style dropdown options */
+.form-group select option {
+    background: #1a1a2e;  /* matches site background */
+    color: #ffffff;       /* white text */
+    padding: 10px;
+}
+
+/* Hover effect for options */
+.form-group select option:hover {
+    background: #667eea;  /* gradient blue */
+    color: #ffffff;
+}
