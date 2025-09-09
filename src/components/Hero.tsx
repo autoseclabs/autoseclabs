@@ -12,9 +12,17 @@ const Hero = () => {
       
       <div className="container">
         <div className="hero-content">
-          <h1>Your Trusted Partner for QA, Security & Automation</h1>
-          <h2>Helping SaaS & Startups deliver reliable, secure, and scalable products</h2>
-          <a href="#contact" className="cta-button">Get Free Consultation</a>
+          <h1>Transform Your Digital Vision Into Reality</h1>
+          <h2>Premium IT Services for Global Enterprises</h2>
+          <p className="hero-description">
+            We deliver premium quality assurance, automation, and development solutions with a commitment 
+            to tangible business results. Our elite team works across international markets to help you 
+            create more competitive and sustainable businesses.
+          </p>
+          <div className="hero-buttons">
+            <a href="#contact" className="cta-button primary">Get Started Today</a>
+            <a href="#services" className="cta-button secondary">Explore Services</a>
+          </div>
         </div>
       </div>
     </section>

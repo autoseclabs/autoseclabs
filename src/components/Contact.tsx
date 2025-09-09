@@ -117,12 +117,23 @@ const Contact = () => {
                focus:ring-2 focus:ring-blue-500 focus:outline-none"
               >
                 <option value="">Select a service</option>
-                <option value="qa-testing">QA/Manual Testing</option>
-                <option value="automation">Automation Testing</option>
-                <option value="security">Security Testing</option>
-                <option value="ai-automation">AI Automation</option>
-                <option value="devops">DevOps</option>
-                <option value="development">Development</option>
+                  <option value="manual-qa">Manual QA Testing</option>
+                  <option value="test-automation">Test Automation Framework</option>
+                  <option value="performance-testing">Performance & Load Testing</option>
+                  <option value="mobile-testing">Mobile App Testing</option>
+                  <option value="api-testing">API Testing & Validation</option>
+                  <option value="security-testing">Security Testing</option>
+                  <option value="cicd-pipeline">CI/CD Pipeline Implementation</option>
+                  <option value="ai-automation">AI-Powered Test Automation</option>
+                  <option value="marketing-automation">Marketing Automation Setup</option>
+                  <option value="legacy-modernization">Legacy Application Modernizations</option>
+                  <option value="penetration-testing">Penetration Testing</option>
+                  <option value="web-development">Web Application Development</option>
+                  <option value="devops-transformation">DevOps Transformation</option>
+                  <option value="test-strategy">Test Strategy & Planning</option>
+                  <option value="technical-audits">Technical Audits</option>
+                  <option value="other">Other</option>
+
               </select>
             </div>
             <div className="form-group">
@@ -143,12 +154,41 @@ const Contact = () => {
         </div>
 
         <div className="quick-connect fade-in">
-          <a href="mailto:contact@autoseclabs.com" className="connect-button">
-            ✉️ contact@autoseclabs.com
+          <a href="mailto:contact@autoseclabs.space" className="connect-button">
+            ✉️ contact@autoseclabs.space
           </a>
           <a href="https://wa.me/+918712388153" className="connect-button">
             💬 WhatsApp Chat
           </a>
+        </div>
+
+        {/* Global Coverage Info */}
+        <div className="global-coverage fade-in">
+          <h3>Global Service Coverage</h3>
+          <div className="coverage-grid">
+            <div className="coverage-item">
+              <h4>🌍 Regions</h4>
+              <p>North America (US, Canada)<br/>
+              Europe (UK, Germany, Netherlands, Sweden, France)<br/>
+              Asia-Pacific (Australia, Singapore)<br/>
+              Middle East (UAE, Israel)</p>
+            </div>
+            <div className="coverage-item">
+              <h4>🔧 Specializations</h4>
+              <p>Quality Assurance & Testing<br/>
+              DevOps & Cloud Migration<br/>
+              AI & Data Analytics<br/>
+              Security & Compliance<br/>
+              Legacy Modernization<br/>
+              Performance Optimization</p>
+            </div>
+            <div className="coverage-item">
+              <h4>🏢 Industries</h4>
+              <p>Financial Services | Healthcare | Life Sciences<br/>
+              Manufacturing | Public Sector | Retail & CPG<br/>
+              Technology, Media & Telecom</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

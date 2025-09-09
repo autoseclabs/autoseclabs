@@ -7,7 +7,6 @@ import Industries from './components/Industries'
 import Testimonials from './components/Testimonials'
 import Process from './components/Process'
 import GlobalPresence from './components/GlobalPresence'
-import Team from './components/Team'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import './styles.css'
@@ -80,7 +79,6 @@ function App() {
       <Testimonials />
       <Process />
       <GlobalPresence />
-      <Team />
       <Contact />
       <Footer />
     </div>
