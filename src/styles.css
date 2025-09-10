@@ -591,3 +591,7 @@ footer {
     background: #667eea;  /* gradient blue */
     color: #ffffff;
 }
+.social-link svg {
+  width: 18px;
+  height: 18px;
+}

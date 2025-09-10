@@ -1,3 +1,5 @@
+import { Linkedin, Send, Twitter } from "lucide-react";
+
 const Footer = () => {
   return (
     <footer>
@@ -28,9 +30,30 @@ const Footer = () => {
           <div className="footer-section">
             <h3>Connect With Us</h3>
             <div className="social-links">
-              <a href="#" className="social-link">L</a>
-              <a href="#" className="social-link">T</a>
-              <a href="#" className="social-link">G</a>
+              <a 
+                href="https://www.linkedin.com/yourprofile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a 
+                href="https://t.me/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                <Send size={18} />
+              </a>
+              <a 
+                href="https://x.com/yourhandle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                <Twitter size={18} />
+              </a>
             </div>
           </div>
         </div>
