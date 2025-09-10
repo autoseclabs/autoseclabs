@@ -11,7 +11,6 @@ const Footer = () => {
             <a href="#services">AI Automation</a>
             <a href="#services">DevOps</a>
             <a href="#services">Development</a>
-            <a href="#services">Pentesting</a>
           </div>
           <div className="footer-section">
             <h3>Company</h3>
