@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./styles.css";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -7,6 +8,7 @@ import Features from "./components/Features";
 import GlobalPresence from "./components/GlobalPresence";
 import Process from "./components/Process";
 import Contact from "./components/Contact";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 const Landing = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -50,14 +52,17 @@ const Landing = () => {
       {/* Navigation */}
       <nav role="navigation" aria-label="Main navigation">
         <div className="nav-container">
-          <div className="logo" itemProp="name">AutoSec Labs</div>
+          <div className="logo" itemProp="name">
+            <img src="/logo.png" alt="AutoSec Labs Logo" className="logo-icon" />
+            AutoSec Labs
+          </div>
           <ul className="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#industries">Industries</a></li>
-            <li><a href="#global">Global Presence</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" onClick={(e) => { e.preventDefault(); document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }); }}>Home</a></li>
+            <li><a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }}>About</a></li>
+            <li><a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }}>Services</a></li>
+            <li><a href="#industries" onClick={(e) => { e.preventDefault(); document.getElementById('industries')?.scrollIntoView({ behavior: 'smooth' }); }}>Industries</a></li>
+            <li><a href="#global" onClick={(e) => { e.preventDefault(); document.getElementById('global')?.scrollIntoView({ behavior: 'smooth' }); }}>Global Presence</a></li>
+            <li><a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>Contact</a></li>
           </ul>
           <button 
             className="mobile-menu-toggle"
@@ -69,12 +74,12 @@ const Landing = () => {
         </div>
         <div className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
           <ul>
-            <li><a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a></li>
-            <li><a href="#about" onClick={() => setMobileMenuOpen(false)}>About</a></li>
-            <li><a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a></li>
-            <li><a href="#industries" onClick={() => setMobileMenuOpen(false)}>Industries</a></li>
-            <li><a href="#global" onClick={() => setMobileMenuOpen(false)}>Global Presence</a></li>
-            <li><a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a></li>
+            <li><a href="#home" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }); }}>Home</a></li>
+            <li><a href="#about" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }}>About</a></li>
+            <li><a href="#services" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }}>Services</a></li>
+            <li><a href="#industries" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); document.getElementById('industries')?.scrollIntoView({ behavior: 'smooth' }); }}>Industries</a></li>
+            <li><a href="#global" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); document.getElementById('global')?.scrollIntoView({ behavior: 'smooth' }); }}>Global Presence</a></li>
+            <li><a href="#contact" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -179,17 +184,17 @@ const Landing = () => {
               <h3>Data Analytics & AI Solutions</h3>
               <p>Advanced services for data analysis, Artificial Intelligence, and Machine Learning integration.</p>
             </div>
-            <div className="glass-card">
+          <div className="glass-card">
               <div className="expertise-icon">🛠️</div>
               <h3>Managed Services & Operations</h3>
               <p>Multiplatform support, marketing operations, and application modernizations for seamless business continuity.</p>
-            </div>
-            <div className="glass-card">
+          </div>
+          <div className="glass-card">
               <div className="expertise-icon">🔒</div>
               <h3>Security & Compliance</h3>
               <p>Ensure continuous safety, security, and integrity of your online operations and data centers.</p>
-            </div>
-            <div className="glass-card">
+          </div>
+          <div className="glass-card">
               <div className="expertise-icon">📊</div>
               <h3>ETL Testing Specialists</h3>
               <p>Data validity, integrity, and accuracy testing for databases and data warehouses.</p>
@@ -216,6 +221,8 @@ const Landing = () => {
       {/* Contact - Import from Contact component */}
       <Contact />
 
+      
+
       {/* Footer */}
       <footer>
         <div className="footer-content container">
@@ -225,12 +232,13 @@ const Landing = () => {
           </div>
           <div className="footer-section">
             <h3>Quick Links</h3>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#industries">Industries</a>
-            <a href="#global">Global Presence</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" onClick={(e) => { e.preventDefault(); document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }); }}>Home</a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }}>About</a>
+            <a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }}>Services</a>
+            <a href="#industries" onClick={(e) => { e.preventDefault(); document.getElementById('industries')?.scrollIntoView({ behavior: 'smooth' }); }}>Industries</a>
+            <a href="#global" onClick={(e) => { e.preventDefault(); document.getElementById('global')?.scrollIntoView({ behavior: 'smooth' }); }}>Global Presence</a>
+            <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>Contact</a>
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </div>
           <div className="footer-section">
             <h3>Global Coverage</h3>
@@ -241,7 +249,6 @@ const Landing = () => {
             <h3>Connect</h3>
             <div className="social-links">
               <a href="mailto:contact@autoseclabs.space" className="social-link">✉️ Email</a>
-              <a href="https://wa.me/+918712388153" className="social-link">💬 WhatsApp</a>
             </div>
           </div>
         </div>

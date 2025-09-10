@@ -157,9 +157,7 @@ const Contact = () => {
           <a href="mailto:contact@autoseclabs.space" className="connect-button">
             ✉️ contact@autoseclabs.space
           </a>
-          <a href="https://wa.me/+918712388153" className="connect-button">
-            💬 WhatsApp Chat
-          </a>
+         
         </div>
 
         {/* Global Coverage Info */}
